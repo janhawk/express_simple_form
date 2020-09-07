@@ -31,7 +31,7 @@ app.post('/send-form',(req, res) => {
     console.log('POST /send-form');
     console.log('POST /send-form req.body', req.body);
 
-    res.send(`Student ${req.body.usernamename} has been added`);
+    res.send(`Student ${req.body.usernamename} has been recorded. <a href="http://localhost:3000/">Go Back</a>`);
 });
 
 app.listen(port, () => {
