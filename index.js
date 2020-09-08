@@ -4,7 +4,7 @@ const exphbs = require('express-handlebars');
 const port = 3000;
 const app = express();
 
-const students = ['Jean', 'Binta', 'Agathe', 'Adil'];
+const students = [];
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -16,23 +16,23 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     res.render('home', {
-        students: ['Jean', 'Binta', 'Agathe', 'Adil']
+        students
     });
 });
 app.post('/students/add', (req,res) => {
     console.log('POST /students/add');
+    console.log('POST /students/add req.body', req.body);
 
-    // res.send('Lawrence Nowell, UK');
+    const { usernamename } = req.body;// for recuperer les usernamename dans home et afficher
+
+    res.send(`Student ${req.body.usernamename} has been recorded. <a href="http://localhost:3000/">Go Back</a>`);
+    
+    students.push(usernamename); // for recuperer les usernamename dans home et afficher
 });
 // app.get('/send-form',() =>{
 //     res.send('this route is different than app.post("/send-form")')
 // });
-app.post('/send-form',(req, res) => {
-    console.log('POST /send-form');
-    console.log('POST /send-form req.body', req.body);
 
-    res.send(`Student ${req.body.usernamename} has been recorded. <a href="http://localhost:3000/">Go Back</a>`);
-});
 
 app.listen(port, () => {
     console.log(`Server satrted on port: ${port}`) // to confirme that server is started on that port
